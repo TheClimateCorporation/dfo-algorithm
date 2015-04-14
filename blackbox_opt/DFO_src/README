@@ -1,0 +1,47 @@
+A Python implementation of the DFO algorithm developed by A. Conn,
+K. Scheinberg, L. Vicente.
+author: Anahita Hassanzadeh
+email: Anahita.Hassanzadeh@gmail.com
+
+The DFO code consisits of the following modules:
+
+        -dfo_tr.py: this is the main module of the algorithm that contains
+        the trust-region main loop. This module takes the starting point of
+        the algorithm and reports the iterations stats and solution time.
+        If the user wishes to specify more than one point,
+        she should modify the "build_initial_sample" function in this file.
+
+        -quad_Frob.py: this function constructs a quadratic model from a given
+        set of points. The model is constructed such that the Frobenius norm
+        of the Hessian is minimized.
+
+        -trust_sub.py: solves the trust region subproblem to find the step
+        size to move from the current point to a new point.
+
+The user can run the DFO algorithm with the following options:
+        - sample_gen # the initial sample set option {"auto" or "manual"}
+        [default:auto]
+        - verbosity # the verbosity option set it to 0 or 1
+        [default:1]
+
+[default values for the following options are set in the
+ "params" class in the dfo_tr module]
+
+        - delta #initial delta (i.e. trust region radius)
+        - tol_delta # smallest delta to stop
+        - max_delta # max possible delta
+
+        - gamma1 # TR radius shrink factor
+        - gamma2 # TR radius expansion factor
+
+        - eta0  # step acceptance test (pred/ared) threshold
+        - eta1 # (pred/ared) level to shrink radius
+        - eta2 # (pred/ared) level to expand radius
+
+        - tol_f # threshold for abs(fprev - fnew)- used to stop
+        - tol_norm_g # threshold for norm of gradient- used to stop
+        - tol_norm_H # threshold for the (frobenius) norm of H
+        - maxfev # maximum number of iterations
+
+        - min_del_crit # minimum delta for the criticality step
+        - min_s_crit  # minimum step for the criticality step
